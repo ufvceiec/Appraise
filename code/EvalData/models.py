@@ -983,7 +983,8 @@ class DirectAssessmentTask(BaseMetadata):
                 batch_json = loads(batch_content, encoding='utf-8')
 
         else:
-            batch_json = loads(str(batch_file.read(), encoding="utf-8"))
+            # deleted ', encoding="utf-8"'
+            batch_json = loads(str(batch_file.read()))
 
         from datetime import datetime
         t1 = datetime.now()
@@ -1651,7 +1652,7 @@ class MultiModalAssessmentTask(BaseMetadata):
                 batch_json = loads(batch_content, encoding='utf-8')
 
         else:
-            batch_json = loads(str(batch_file.read(), encoding="utf-8"))
+            batch_json = loads(str(batch_file.read()))
 
         from datetime import datetime
         t1 = datetime.now()

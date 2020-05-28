@@ -14,9 +14,12 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url, handler404, handler500, include
+from django.conf import settings
+from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.decorators import login_required
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from Dashboard import views as dashboard_views
 from EvalView import views as evalview_views
 from Appraise.settings import BASE_CONTEXT, DEBUG, DEBUG_TOOLBAR_AVAILABLE
@@ -88,7 +91,7 @@ urlpatterns = [
     url(r'^multimodal-assessment/$', evalview_views.multimodal_assessment, name='multimodal-assessment'),
     url(r'^multimodal-assessment/(?P<code>[a-z]{3})/$', evalview_views.multimodal_assessment, name='multimodal-assessment'),
     url(r'^multimodal-assessment/(?P<code>[a-z]{3})/(?P<campaign_name>[a-zA-Z0-9]+)/$', evalview_views.multimodal_assessment, name='multimodal-assessment'),
-]
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + staticfiles_urlpatterns()
 
 if DEBUG and DEBUG_TOOLBAR_AVAILABLE:
     import debug_toolbar

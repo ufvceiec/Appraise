@@ -59,7 +59,8 @@ class Command(BaseCommand):
                         batch_json = loads(batch_data, encoding='utf-8')
 
                 else:
-                    batch_json = loads(str(batch_file.read(), encoding="utf-8"))
+                    # removed ', encoding="utf-8"'
+                    batch_json = loads(str(batch_file.read()))
 
                 batch.dataValid = True
                 batch.save()
